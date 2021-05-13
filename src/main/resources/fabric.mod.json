@@ -1,0 +1,29 @@
+{
+	"schemaVersion": 1,
+	"id": "fromtheearth",
+	"version": "${version}",
+	"name": "From The Earth",
+	"description": "A survival overhaul mod in the vein of Terrafirmacraft.",
+	"authors": [
+		"Cammie"
+	],
+	"license": "MIT",
+	"icon": "assets/fromtheearth/icon.png",
+	"environment": "*",
+	"entrypoints": {
+		"client": [
+			"dev.cammiescorner.fromtheearth.client.FromTheEarthClient"
+		],
+		"main": [
+			"dev.cammiescorner.fromtheearth.FromTheEarth"
+		]
+	},
+	"mixins": [
+		"from-the-earth.mixins.json"
+	],
+	"depends": {
+		"fabricloader": ">=0.11.3",
+		"fabric": "*",
+		"minecraft": "1.16.x"
+	}
+}
