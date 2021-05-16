@@ -2,6 +2,8 @@ package dev.cammiescorner.fromtheearth.core.mixin;
 
 import dev.cammiescorner.fromtheearth.FromTheEarth;
 import net.minecraft.world.biome.GenerationSettings;
+import net.minecraft.world.gen.GenerationStep;
+import net.minecraft.world.gen.feature.ConfiguredFeatures;
 import net.minecraft.world.gen.feature.DefaultBiomeFeatures;
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.injection.At;
@@ -19,23 +21,41 @@ public class DefaultBiomeFeaturesMixin
 	}
 
 	@Inject(method = "addExtraGoldOre", at = @At("HEAD"), cancellable = true)
-	private static void addExtraGoldOre(GenerationSettings.Builder build, CallbackInfo info)
+	private static void addExtraGoldOre(GenerationSettings.Builder builder, CallbackInfo info)
 	{
 		info.cancel();
 	}
 
 	@Inject(method = "addEmeraldOre", at = @At("HEAD"), cancellable = true)
-	private static void addEmeraldOre(GenerationSettings.Builder build, CallbackInfo info)
+	private static void addEmeraldOre(GenerationSettings.Builder builder, CallbackInfo info)
 	{
 		info.cancel();
 	}
 
-	// Might not need this one, haven't tested yet
-	/*@Inject(method = "addBambooJungleTrees", at = @At("HEAD"), cancellable = true)
-	private static void addBambooJungleTrees(GenerationSettings.Builder build, CallbackInfo info)
+	@Inject(method = "addBambooJungleTrees", at = @At("HEAD"), cancellable = true)
+	private static void addBambooJungleTrees(GenerationSettings.Builder builder, CallbackInfo info)
 	{
+		builder.feature(GenerationStep.Feature.VEGETAL_DECORATION, ConfiguredFeatures.BAMBOO);
 		info.cancel();
-	}*/
+	}
+
+	@Inject(method = "addSwampFeatures", at = @At("HEAD"), cancellable = true)
+	private static void addSwampFeatures(GenerationSettings.Builder builder, CallbackInfo info)
+	{
+		builder.feature(GenerationStep.Feature.VEGETAL_DECORATION, ConfiguredFeatures.FLOWER_SWAMP);
+		builder.feature(GenerationStep.Feature.VEGETAL_DECORATION, ConfiguredFeatures.PATCH_GRASS_NORMAL);
+		builder.feature(GenerationStep.Feature.VEGETAL_DECORATION, ConfiguredFeatures.PATCH_DEAD_BUSH);
+		builder.feature(GenerationStep.Feature.VEGETAL_DECORATION, ConfiguredFeatures.PATCH_WATERLILLY);
+		info.cancel();
+	}
+
+	@Inject(method = "addPlainsFeatures", at = @At("HEAD"), cancellable = true)
+	private static void addPlainsFeatures(GenerationSettings.Builder builder, CallbackInfo info)
+	{
+		builder.feature(GenerationStep.Feature.VEGETAL_DECORATION, ConfiguredFeatures.FLOWER_PLAIN_DECORATED);
+		builder.feature(GenerationStep.Feature.VEGETAL_DECORATION, ConfiguredFeatures.PATCH_GRASS_PLAIN);
+		info.cancel();
+	}
 
 	@Inject(method = "addTaigaTrees", at = @At("HEAD"), cancellable = true)
 	private static void addTaigaTrees(GenerationSettings.Builder build, CallbackInfo info)

@@ -4,6 +4,7 @@
 	"package": "dev.cammiescorner.fromtheearth.core.mixin",
 	"compatibilityLevel": "JAVA_8",
 	"mixins": [
+		"DefaultBiomeCreatorMixin",
 		"DefaultBiomeFeaturesMixin",
 		"PlayerEntityMixin"
 	],
